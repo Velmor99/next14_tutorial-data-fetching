@@ -15,8 +15,14 @@ export default async function ProductsPage() {
   // const cookieStore = cookies();
   // const theme = cookieStore.get("theme");
 
+  // const response = await fetch("http://localhost:3001/products", {
+  //   cache: "no-store",
+  // });
+
   const response = await fetch("http://localhost:3001/products", {
-    cache: "no-store",
+    next: {
+      revalidate: 10, // refetch our data in 10 seconds
+    },
   });
 
   // const detailsResponse2 = await fetch("http://localhost:3001/products/2"); // hasn't been cached and reused becouse position bellow "no-store"
